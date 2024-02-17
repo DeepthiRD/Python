@@ -1,0 +1,70 @@
+def value_of_card(card):
+    if card == 'A':
+        return 1
+    elif card == ('J' or 'K' or 'Q' or 10):
+        return 10
+    elif card == 2:
+        return 2
+    elif card == 3:
+        return 3
+    elif card == 4:
+        return 4
+    elif card == 5:
+        return 5
+    elif card == 6:
+        return 6
+    elif card == 7:
+        return 7
+    elif card == 8:
+        return 8
+    elif card == 9:
+        return 9
+
+
+def higher_card(card_one, card_two):
+    if card_one == ('J' or 'K' or 'Q' or 10) and card_two == ('J' or 'K' or 'Q' or 10):
+        return card_one, card_two
+    elif card_one == 'A':
+        return card_two
+    elif card_two == 'A':
+        return card_one
+    else:
+        return max(card_one, card_two)
+
+
+def value_of_ace(card_one, card_two):
+    if card_one == ('J' or 'K' or 'Q' or 'A' or 10) or card_two == ('J' or 'K' or 'Q' or 'A' or 10):
+        return 1
+    if card_one != ('J' or 'K' or 'Q' or 'A' or 10) and card_two != ('J' or 'K' or 'Q' or 'A' or 10):
+        return 11
+
+
+def is_blackjack(card_one, card_two):
+    if card_one == 'A':
+        if card_two == ('J' or 'K' or 'Q' or 10):
+            return 'True'
+        else:
+            return 'False'
+    elif card_two == 'A':
+        if card_one == ('J' or 'K' or 'Q' or 10):
+            return 'True'
+        else:
+            return 'False'
+    else:
+        return 'False'
+
+
+def can_split_pairs(card_one, card_two):
+    if card_one == card_two:
+        return 'True'
+    elif card_one == ('J' or 'Q' or 10) and card_two == ('J' or 'Q' or 10):
+        return 'True'
+    else:
+        return 'False'
+
+
+def doubling_down(card_one, card_two):
+    if card_one+card_two in [9, 10, 11]:
+        return 'True'
+    else:
+        return 'False'
