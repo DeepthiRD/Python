@@ -1,0 +1,30 @@
+def is_criticality_balanced(temperature, neutrons_emitted):
+    if temperature < 800 and neutrons_emitted > 500 and (temperature * neutrons_emitted) < 500000:
+        return "TRUE"
+
+
+def reactor_efficiency(voltage, current, theoretical_max_power):
+    generated_power = voltage * current
+    efficiency = (generated_power/theoretical_max_power)*100
+    if efficiency > 80:
+        print("green")
+    elif 60 <= efficiency < 80:
+        print("orange")
+    elif 30 <= efficiency < 60:
+        print("red")
+    elif efficiency < 30:
+        print("black")
+
+
+def fail_safe(temperature, neutrons_produced_per_second, threshold):
+    criticality = (threshold/(neutrons_produced_per_second*temperature))*100
+    if criticality < 90:
+        print("status code is LOW,indicating rods must be removed")
+    elif 10 < criticality < 0:
+        print("status code is NORMAL")
+    elif criticality > 90:
+        print("status code is DANGER,shut down the reactor")
+
+
+
+
