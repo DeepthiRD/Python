@@ -1,0 +1,15 @@
+# Import your libraries
+import pandas as pd
+from datetime import datetime
+
+# Start writing code
+fb_comments_count.head()
+
+fb_comments_count['date_str'] = "2020-02-10"
+#date_format = "%Y-%m-%d"
+#date_object = datetime.strptime(date_str, date_format)
+fb_comments_count['number_of_days'] = (pd.to_datetime(fb_comments_count['date_str'])-fb_comments_count['created_at']).dt.days
+
+fb_comments_count_new = fb_comments_count.query('number_of_days<=30 and number_of_days>=0')
+
+fb_comments_count_new.groupby('user_id')['number_of_comments'].sum().to_frame('no_of_comments_per_user').reset_index().sort_values('no_of_comments_per_user',ascending = False)
